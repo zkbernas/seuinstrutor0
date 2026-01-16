@@ -1,0 +1,219 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// ADMIN
+// ============================================
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         AdminRole @default(OPERATOR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  auditLogs    AuditLog[]
+  reviewedDocs InstructorDocument[]
+
+  @@map("admin_users")
+}
+
+enum AdminRole {
+  ADMIN
+  OPERATOR
+}
+
+// ============================================
+// INSTRUCTOR
+// ============================================
+
+model Instructor {
+  id             String           @id @default(uuid())
+  name           String
+  email          String           @unique
+  phone          String
+  documentNumber String           @unique // CPF ou CNPJ
+  city           String?
+  state          String?
+  status         InstructorStatus @default(DRAFT)
+  currentPlanId  String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  // Relations
+  currentPlan   Plan?                @relation(fields: [currentPlanId], references: [id])
+  documents     InstructorDocument[]
+  subscriptions Subscription[]
+  payments      Payment[]
+
+  @@index([status])
+  @@index([currentPlanId])
+  @@index([email])
+  @@map("instructors")
+}
+
+enum InstructorStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  BLOCKED
+}
+
+// ============================================
+// DOCUMENTS
+// ============================================
+
+model InstructorDocument {
+  id           String         @id @default(uuid())
+  instructorId String
+  type         DocumentType
+  fileName     String
+  mimeType     String
+  size         Int
+  storagePath  String
+  uploadedAt   DateTime       @default(now())
+  reviewStatus ReviewStatus   @default(PENDING)
+  reviewNotes  String?
+  reviewedByAdminId String?
+  reviewedAt   DateTime?
+
+  // Relations
+  instructor   Instructor  @relation(fields: [instructorId], references: [id], onDelete: Cascade)
+  reviewedBy   AdminUser?  @relation(fields: [reviewedByAdminId], references: [id])
+
+  @@index([instructorId])
+  @@index([reviewStatus])
+  @@map("instructor_documents")
+}
+
+enum DocumentType {
+  CNH
+  CPF
+  COMPROV_RESIDENCIA
+  FOTO_PERFIL
+  OUTRO
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// ============================================
+// PLANS
+// ============================================
+
+model Plan {
+  id           String   @id @default(uuid())
+  name         String
+  priceCents   Int
+  studentLimit Int
+  featuresJson Json     // { features: string[] }
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  instructors   Instructor[]
+  subscriptions Subscription[]
+
+  @@map("plans")
+}
+
+// ============================================
+// SUBSCRIPTIONS & PAYMENTS
+// ============================================
+
+model Subscription {
+  id             String             @id @default(uuid())
+  instructorId   String
+  planId         String
+  status         SubscriptionStatus @default(ACTIVE)
+  startedAt      DateTime           @default(now())
+  nextBillingAt  DateTime?
+  canceledAt     DateTime?
+
+  // Relations
+  instructor Instructor @relation(fields: [instructorId], references: [id], onDelete: Cascade)
+  plan       Plan       @relation(fields: [planId], references: [id])
+  payments   Payment[]
+
+  @@index([instructorId])
+  @@index([status])
+  @@map("subscriptions")
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+}
+
+model Payment {
+  id             String        @id @default(uuid())
+  instructorId   String
+  subscriptionId String?
+  amountCents    Int
+  method         PaymentMethod
+  status         PaymentStatus @default(PENDING)
+  paidAt         DateTime?
+  reference      String?
+  createdAt      DateTime      @default(now())
+
+  // Relations
+  instructor   Instructor    @relation(fields: [instructorId], references: [id], onDelete: Cascade)
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+
+  @@index([instructorId])
+  @@index([status])
+  @@index([paidAt])
+  @@map("payments")
+}
+
+enum PaymentMethod {
+  PIX
+  CARD
+  CASH
+  TRANSFER
+  OTHER
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+  FAILED
+  REFUNDED
+}
+
+// ============================================
+// AUDIT
+// ============================================
+
+model AuditLog {
+  id           String   @id @default(uuid())
+  actorAdminId String
+  action       String
+  entityType   String
+  entityId     String
+  metadataJson Json
+  createdAt    DateTime @default(now())
+
+  // Relations
+  actor AdminUser @relation(fields: [actorAdminId], references: [id])
+
+  @@index([actorAdminId])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}

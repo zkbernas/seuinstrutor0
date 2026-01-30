@@ -6,9 +6,9 @@ export declare class StudentsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
         phone: string;
-        userId: string;
     }>;
     findAll(): Promise<({
         user: {
@@ -24,8 +24,8 @@ export declare class StudentsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
         phone: string;
-        userId: string;
     })[]>;
 }

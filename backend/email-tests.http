@@ -1,0 +1,118 @@
+### TESTES DE EMAIL - RESEND
+### Configure a variável RESEND_API_KEY no .env antes de testar
+### Servidor deve estar rodando em http://localhost:3000
+
+### 1. Teste de Email de Boas-vindas
+POST http://localhost:3000/email/test-welcome
+Content-Type: application/json
+
+{
+  "email": "berproenccaa@gmail.com",
+  "name": "Bernardo"
+}
+
+###
+
+### 2. Teste de Email de Verificação
+POST http://localhost:3000/email/test-verification
+Content-Type: application/json
+
+{
+  "email": "berproenccaa@gmail.com",
+  "token": "teste-token-verificacao-12345"
+}
+
+###
+
+### 3. Teste de Email de Reset de Senha
+POST http://localhost:3000/email/test-reset-password
+Content-Type: application/json
+
+{
+  "email": "berproenccaa@gmail.com",
+  "token": "reset-token-12345"
+}
+
+###
+
+### 4. Teste de Notificação de Aula Agendada
+POST http://localhost:3000/email/test-lesson
+Content-Type: application/json
+
+{
+  "email": "berproenccaa@gmail.com",
+  "lessonDetails": {
+    "studentName": "João Silva",
+    "instructorName": "Maria Santos",
+    "date": "30/01/2026",
+    "time": "14:00",
+    "duration": 60
+  }
+}
+
+###
+
+### 5. Envio de Email Genérico (Requer Autenticação)
+### Primeiro faça login e copie o token
+POST http://localhost:3000/email/send
+Content-Type: application/json
+Authorization: Bearer SEU_TOKEN_JWT_AQUI
+
+{
+  "to": "berproenccaa@gmail.com",
+  "subject": "Email de Teste",
+  "html": "<h1>Olá!</h1><p>Este é um email de teste do SeuInstrutor.</p>"
+}
+
+###
+
+### 6. Teste com Múltiplos Destinatários
+POST http://localhost:3000/email/send
+Content-Type: application/json
+Authorization: Bearer SEU_TOKEN_JWT_AQUI
+
+{
+  "to": ["email1@example.com", "email2@example.com"],
+  "subject": "Email para Múltiplos Destinatários",
+  "html": "<p>Este email foi enviado para várias pessoas.</p>"
+}
+
+###
+
+### 7. Teste com CC e BCC
+POST http://localhost:3000/email/send
+Content-Type: application/json
+Authorization: Bearer SEU_TOKEN_JWT_AQUI
+
+{
+  "to": "berproenccaa@gmail.com",
+  "cc": "copia@example.com",
+  "bcc": "copia-oculta@example.com",
+  "subject": "Email com CC e BCC",
+  "html": "<p>Este email tem cópias.</p>"
+}
+
+###
+
+### COMANDOS CURL (alternativa ao arquivo .http)
+
+### Email de Boas-vindas
+# curl -X POST http://localhost:3000/email/test-welcome \
+#   -H "Content-Type: application/json" \
+#   -d '{"email":"berproenccaa@gmail.com","name":"Bernardo"}'
+
+### Email de Verificação
+# curl -X POST http://localhost:3000/email/test-verification \
+#   -H "Content-Type: application/json" \
+#   -d '{"email":"berproenccaa@gmail.com","token":"teste-token-123"}'
+
+### Email de Reset
+# curl -X POST http://localhost:3000/email/test-reset-password \
+#   -H "Content-Type: application/json" \
+#   -d '{"email":"berproenccaa@gmail.com","token":"reset-token-123"}'
+
+### Email de Aula
+# curl -X POST http://localhost:3000/email/test-lesson \
+#   -H "Content-Type: application/json" \
+#   -d '{"email":"berproenccaa@gmail.com","lessonDetails":{"studentName":"João Silva","instructorName":"Maria Santos","date":"30/01/2026","time":"14:00","duration":60}}'
+

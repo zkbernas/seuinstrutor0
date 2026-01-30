@@ -7,10 +7,10 @@ export declare class VehiclesService {
     create(dto: CreateVehicleDto): Promise<{
         id: string;
         year: number;
+        transmission: import("@prisma/client").$Enums.TransmissionType;
         model: string;
         brand: string;
         plate: string;
-        transmission: import("@prisma/client").$Enums.TransmissionType;
         isAdapted: boolean;
         instructorId: string;
     }>;
@@ -29,6 +29,7 @@ export declare class VehiclesService {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
             credentialNumber: string;
@@ -42,15 +43,14 @@ export declare class VehiclesService {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            userId: string;
         };
     } & {
         id: string;
         year: number;
+        transmission: import("@prisma/client").$Enums.TransmissionType;
         model: string;
         brand: string;
         plate: string;
-        transmission: import("@prisma/client").$Enums.TransmissionType;
         isAdapted: boolean;
         instructorId: string;
     })[]>;
@@ -59,6 +59,7 @@ export declare class VehiclesService {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
             credentialNumber: string;
@@ -72,35 +73,34 @@ export declare class VehiclesService {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            userId: string;
         };
     } & {
         id: string;
         year: number;
+        transmission: import("@prisma/client").$Enums.TransmissionType;
         model: string;
         brand: string;
         plate: string;
-        transmission: import("@prisma/client").$Enums.TransmissionType;
         isAdapted: boolean;
         instructorId: string;
     }) | null>;
     update(id: string, dto: UpdateVehicleDto): Promise<{
         id: string;
         year: number;
+        transmission: import("@prisma/client").$Enums.TransmissionType;
         model: string;
         brand: string;
         plate: string;
-        transmission: import("@prisma/client").$Enums.TransmissionType;
         isAdapted: boolean;
         instructorId: string;
     }>;
     remove(id: string): Promise<{
         id: string;
         year: number;
+        transmission: import("@prisma/client").$Enums.TransmissionType;
         model: string;
         brand: string;
         plate: string;
-        transmission: import("@prisma/client").$Enums.TransmissionType;
         isAdapted: boolean;
         instructorId: string;
     }>;

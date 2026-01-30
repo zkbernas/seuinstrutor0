@@ -29,6 +29,7 @@ export declare class AuthController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
             credentialNumber: string;
@@ -42,15 +43,14 @@ export declare class AuthController {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            userId: string;
         } | null;
         studentProfile: {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
-            userId: string;
         } | null;
     } & {
         id: string;

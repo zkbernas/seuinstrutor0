@@ -16,6 +16,7 @@ const instructors_module_1 = require("./instructors/instructors.module");
 const vehicles_module_1 = require("./vehicles/vehicles.module");
 const lessons_module_1 = require("./lessons/lessons.module");
 const admin_module_1 = require("./admin/admin.module");
+const email_module_1 = require("./email/email.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,6 +31,7 @@ exports.AppModule = AppModule = __decorate([
             vehicles_module_1.VehiclesModule,
             lessons_module_1.LessonsModule,
             admin_module_1.AdminModule,
+            email_module_1.EmailModule,
         ],
     })
 ], AppModule);

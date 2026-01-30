@@ -28,6 +28,7 @@ export declare class AuthService {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
             credentialNumber: string;
@@ -41,15 +42,14 @@ export declare class AuthService {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            userId: string;
         } | null;
         studentProfile: {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
-            userId: string;
         } | null;
     } & {
         id: string;

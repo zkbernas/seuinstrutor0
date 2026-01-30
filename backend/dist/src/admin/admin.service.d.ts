@@ -8,6 +8,7 @@ export declare class AdminService {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
             credentialNumber: string;
@@ -21,15 +22,14 @@ export declare class AdminService {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            userId: string;
         } | null;
         studentProfile: {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
             phone: string;
-            userId: string;
         } | null;
     } & {
         id: string;
@@ -51,6 +51,7 @@ export declare class AdminService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
         phone: string;
         credentialNumber: string;
@@ -64,7 +65,6 @@ export declare class AdminService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     }>;
     listPendingInstructors(): Promise<({
         user: {
@@ -78,6 +78,7 @@ export declare class AdminService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
         phone: string;
         credentialNumber: string;
@@ -91,7 +92,6 @@ export declare class AdminService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     })[]>;
     listRejectedInstructors(): Promise<({
         user: {
@@ -105,6 +105,7 @@ export declare class AdminService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
         phone: string;
         credentialNumber: string;
@@ -118,6 +119,5 @@ export declare class AdminService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     })[]>;
 }

@@ -17,10 +17,11 @@ export declare class InstructorsService {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
+            phone: string;
             credentialNumber: string;
             bio: string | null;
-            phone: string;
             avatarUrl: string | null;
             latitude: number | null;
             longitude: number | null;
@@ -30,7 +31,6 @@ export declare class InstructorsService {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            userId: string;
         };
     }>;
     findAll(filters?: {
@@ -48,22 +48,23 @@ export declare class InstructorsService {
         };
         vehicles: {
             id: string;
-            instructorId: string;
+            year: number;
+            transmission: import("@prisma/client").$Enums.TransmissionType;
             model: string;
             brand: string;
-            year: number;
             plate: string;
-            transmission: import("@prisma/client").$Enums.TransmissionType;
             isAdapted: boolean;
+            instructorId: string;
         }[];
     } & {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -73,7 +74,6 @@ export declare class InstructorsService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     })[]>;
     findOne(id: string): Promise<{
         user: {
@@ -89,10 +89,11 @@ export declare class InstructorsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -102,16 +103,16 @@ export declare class InstructorsService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     }>;
     update(id: string, updateInstructorDto: any): Promise<{
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -121,16 +122,16 @@ export declare class InstructorsService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     }>;
     remove(id: string): Promise<{
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -140,7 +141,6 @@ export declare class InstructorsService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     }>;
     requestVerification(userId: string, dto: any): Promise<{
         user: {
@@ -156,10 +156,11 @@ export declare class InstructorsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -169,7 +170,6 @@ export declare class InstructorsService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     }>;
     findByVerificationStatus(status: string): Promise<({
         user: {
@@ -183,10 +183,11 @@ export declare class InstructorsService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -196,6 +197,5 @@ export declare class InstructorsService {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     })[]>;
 }

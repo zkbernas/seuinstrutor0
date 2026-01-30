@@ -8,33 +8,34 @@ export declare class LessonsService {
         studentId: string;
     }): Promise<{
         id: string;
+        createdAt: Date;
+        status: import("@prisma/client").$Enums.LessonStatus;
+        instructorId: string;
         scheduledAt: Date;
         duration: number;
-        status: import("@prisma/client").$Enums.LessonStatus;
         notes: string | null;
-        createdAt: Date;
         studentId: string;
-        instructorId: string;
     }>;
     findAll(): Promise<({
         instructor: {
             user: {
                 id: string;
-                createdAt: Date;
-                name: string;
-                updatedAt: Date;
                 email: string;
                 password: string;
+                name: string;
+                createdAt: Date;
+                updatedAt: Date;
                 role: import("@prisma/client").$Enums.UserRole;
             };
         } & {
             id: string;
             createdAt: Date;
+            updatedAt: Date;
             userId: string;
             cpf: string;
+            phone: string;
             credentialNumber: string;
             bio: string | null;
-            phone: string;
             avatarUrl: string | null;
             latitude: number | null;
             longitude: number | null;
@@ -44,55 +45,55 @@ export declare class LessonsService {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            updatedAt: Date;
         };
         student: {
             user: {
                 id: string;
-                createdAt: Date;
-                name: string;
-                updatedAt: Date;
                 email: string;
                 password: string;
+                name: string;
+                createdAt: Date;
+                updatedAt: Date;
                 role: import("@prisma/client").$Enums.UserRole;
             };
         } & {
             id: string;
             createdAt: Date;
+            updatedAt: Date;
             userId: string;
             cpf: string;
             phone: string;
-            updatedAt: Date;
         };
     } & {
         id: string;
+        createdAt: Date;
+        status: import("@prisma/client").$Enums.LessonStatus;
+        instructorId: string;
         scheduledAt: Date;
         duration: number;
-        status: import("@prisma/client").$Enums.LessonStatus;
         notes: string | null;
-        createdAt: Date;
         studentId: string;
-        instructorId: string;
     })[]>;
     findOne(id: string): Promise<({
         instructor: {
             user: {
                 id: string;
-                createdAt: Date;
-                name: string;
-                updatedAt: Date;
                 email: string;
                 password: string;
+                name: string;
+                createdAt: Date;
+                updatedAt: Date;
                 role: import("@prisma/client").$Enums.UserRole;
             };
         } & {
             id: string;
             createdAt: Date;
+            updatedAt: Date;
             userId: string;
             cpf: string;
+            phone: string;
             credentialNumber: string;
             bio: string | null;
-            phone: string;
             avatarUrl: string | null;
             latitude: number | null;
             longitude: number | null;
@@ -102,62 +103,61 @@ export declare class LessonsService {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            updatedAt: Date;
         };
         student: {
             user: {
                 id: string;
-                createdAt: Date;
-                name: string;
-                updatedAt: Date;
                 email: string;
                 password: string;
+                name: string;
+                createdAt: Date;
+                updatedAt: Date;
                 role: import("@prisma/client").$Enums.UserRole;
             };
         } & {
             id: string;
             createdAt: Date;
+            updatedAt: Date;
             userId: string;
             cpf: string;
             phone: string;
-            updatedAt: Date;
         };
     } & {
         id: string;
+        createdAt: Date;
+        status: import("@prisma/client").$Enums.LessonStatus;
+        instructorId: string;
         scheduledAt: Date;
         duration: number;
-        status: import("@prisma/client").$Enums.LessonStatus;
         notes: string | null;
-        createdAt: Date;
         studentId: string;
-        instructorId: string;
     }) | null>;
     update(id: string, dto: UpdateLessonDto): Promise<{
         id: string;
+        createdAt: Date;
+        status: import("@prisma/client").$Enums.LessonStatus;
+        instructorId: string;
         scheduledAt: Date;
         duration: number;
-        status: import("@prisma/client").$Enums.LessonStatus;
         notes: string | null;
-        createdAt: Date;
         studentId: string;
-        instructorId: string;
     }>;
     remove(id: string): Promise<{
         id: string;
+        createdAt: Date;
+        status: import("@prisma/client").$Enums.LessonStatus;
+        instructorId: string;
         scheduledAt: Date;
         duration: number;
-        status: import("@prisma/client").$Enums.LessonStatus;
         notes: string | null;
-        createdAt: Date;
         studentId: string;
-        instructorId: string;
     }>;
     findStudentByUserId(userId: string): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         userId: string;
         cpf: string;
         phone: string;
-        updatedAt: Date;
     } | null>;
 }

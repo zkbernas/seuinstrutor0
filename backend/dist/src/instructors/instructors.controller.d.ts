@@ -18,10 +18,11 @@ export declare class InstructorsController {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: string;
             cpf: string;
+            phone: string;
             credentialNumber: string;
             bio: string | null;
-            phone: string;
             avatarUrl: string | null;
             latitude: number | null;
             longitude: number | null;
@@ -31,7 +32,6 @@ export declare class InstructorsController {
             verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
             rejectionReason: string | null;
             rejectionNotes: string | null;
-            userId: string;
         };
     }>;
     findAll(status?: string, category?: string, search?: string, transmission?: string, adapted?: string): Promise<({
@@ -43,22 +43,23 @@ export declare class InstructorsController {
         };
         vehicles: {
             id: string;
+            year: number;
             transmission: import("@prisma/client").$Enums.TransmissionType;
-            instructorId: string;
             model: string;
             brand: string;
-            year: number;
             plate: string;
             isAdapted: boolean;
+            instructorId: string;
         }[];
     } & {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -68,7 +69,6 @@ export declare class InstructorsController {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     })[]>;
     requestVerification(user: {
         id: string;
@@ -86,10 +86,11 @@ export declare class InstructorsController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -99,7 +100,6 @@ export declare class InstructorsController {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     }>;
     findByStatus(status: string): Promise<({
         user: {
@@ -113,10 +113,11 @@ export declare class InstructorsController {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         cpf: string;
+        phone: string;
         credentialNumber: string;
         bio: string | null;
-        phone: string;
         avatarUrl: string | null;
         latitude: number | null;
         longitude: number | null;
@@ -126,6 +127,5 @@ export declare class InstructorsController {
         verificationStatus: import("@prisma/client").$Enums.VerificationStatus;
         rejectionReason: string | null;
         rejectionNotes: string | null;
-        userId: string;
     })[]>;
 }
